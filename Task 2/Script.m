@@ -1,0 +1,16 @@
+Img = imread('Joker.bmp');
+Moon = imread('Moon.bmp');
+Gaussian4 = uint8(LinearFilter(Img, Gauss2(4), 'none'));
+figure('Name', 'Gaussian4'), imshow(Gaussian4);
+Mean3x11 = uint8(LinearFilter(Img, MeanMask(3,11), 'none'));
+figure('Name', 'Mean3x11'), imshow(Mean3x11);
+Mean13x5 = uint8(LinearFilter(Img, MeanMask(13,5), 'none'));
+figure('Name', 'Mean13x5'), imshow(Mean13x5);
+Sharp = uint8(LinearFilter(Moon, LaplacianSharp(), 'cutoff'));
+figure('Name', 'Sharp'), imshow(Sharp);
+SobelHorizontal = uint8(LinearFilter(Img, Sobel('H'), 'absolute'));
+figure('Name', 'SobelHorizontal'), imshow(SobelHorizontal);
+SobelVertical = uint8(LinearFilter(Img, Sobel('V'), 'absolute'));
+figure('Name', 'SobelVertical'), imshow(SobelVertical);
+SobelMagnitude = EdgeMagnit(Img);
+figure('Name', 'SobelMagnitude'), imshow(SobelMagnitude);

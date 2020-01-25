@@ -1,0 +1,21 @@
+function [ ans ] = SquareCounter( img )
+    img = imread('morph.png');
+    img = rgb2gray(img);
+    imgOrg = im2bw(img);
+    imgInv = ~imgOrg;
+    [imgInvL Inum]=bwlabel(imgInv);
+    img = im2bw(imgOrg + (imgInvL>1));
+    figure,imshow(img)
+    
+    M = [1 1 1, 1 0 0, 1 0 0];
+    H = [0 0 0, 0 1 1, 0 1 1];
+    B=bwhitmiss(img,H,M);
+    unique(B)
+    figure,imshow(B)
+    
+    %[lbb ans]=bwlabel(imgE);
+    %coloredLabelsImage = label2rgb (lbb); 
+    %figure,imshow(coloredLabelsImage);
+
+end
+

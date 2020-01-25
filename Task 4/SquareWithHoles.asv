@@ -1,0 +1,17 @@
+function [ ans ] = SquareWithHoles( img )
+    img = imread('morph.png');
+    img = rgb2gray(img);
+    img = im2bw(img);
+    Mask = [-1 -1 -1; -1 1 0; -1 1 0];
+    B=bwhitmiss(img,Mask);
+    [imgL co]=bwlabel(img);
+    
+    squares = unique(imgL .* (B == 1));
+    squares = squares(2:end);
+    
+    
+    imgS = imgL .* (imgL.find(squares))
+    
+
+end
+
